@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="计算机毕设网是一个集“计算机专业大学生毕业设计的指导、网站的建设、计算机技术的学习和互联网资讯的发布等”于一体的综合网站平台。">
+    <meta name="keywords" content="计算机毕设网，毕业设计，源代码，论文，计算机语言，IT教程，IT咨询">
+    <title>39毕设网</title>
+    <link rel="icon" href="" type="image/x-icon">
+    <link rel="shortcut icon" href="" type="image/x-icon">
+    <link rel="stylesheet" href="{{url_for('static',filename='public/bootstrap/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='public/css/animate.css')}}">
+    <style>
+    </style>
+    {% block css %}{% endblock %}
+</head>
+<body>
+<!--导航-->
+<div class="container">
+    <div class="row">
+        <nav class="navbar navbar-default navbar-fixed-top"
+             style="background:#fff;box-shadow: 0 2px 8px 0 rgba(50, 50, 50, 0.50);">
+            <div class="container" style="padding:0;">
+                <!--小屏幕导航按钮和logo-->
+                <div class="navbar-header" style="padding-top: 6px">
+                    <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"
+                            style="margin-top: 10px">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href="" class="navbar-brand"
+                       style="width:170px;color: #333;height: 60px;padding-top: 18px;">
+                        <span class="glyphicon glyphicon-flag" style="color:#3379b7 "></span>
+                        39毕设网
+                    </a>
+                </div>
+                <!--小屏幕导航按钮和logo-->
+                <!--导航-->
+                <div class="navbar-collapse collapse" style="padding-top: 10px">
+                    <ul class="nav navbar-nav navbar-left">
+                        <li>
+                            <a class="curlink" href="{{url_for('home.index')}}" style="font-weight: bold"><span
+                                    class=""></span>&nbsp;首页</a>
+                        </li>
+                        <li>
+                            <a href="javascript:" style="font-weight: bold"><span
+                                    class=""></span>&nbsp;科技资讯</a>
+                        </li>
+                        <li>
+                            <a class="curlink" href="javascript:;"
+                               style="font-weight: bold;"><span
+                                    class=""></span>&nbsp;IT教程</a>
+                        </li>
+                        <li>
+                            <a class="curlink" href="javascript:;"
+                               style="font-weight: bold;"><span
+                                    class=""></span>&nbsp;证书考试</a>
+                        </li>
+                        <li>
+                            <a class="curlink" href="{{url_for('home.mall')}}"
+                               style="font-weight: bold;"><span
+                                    class=""></span>&nbsp;源码商城</a>
+                        </li>
+                        <li>
+                            <a class="curlink" href="javascript:"
+                               style="font-weight: bold;"><span
+                                    class=""></span>&nbsp;建站</a>
+                        </li>
+                        <li>
+                            <a class="curlink" href="javascript:"
+                               style="font-weight: bold;"><span
+                                    class=""></span>&nbsp;购买模板</a>
+                        </li>
+                        <li>
+                            <a class="curlink" href="{{url_for('home.feedback')}}"
+                               style="font-weight: bold;"><span
+                                    class=""></span>&nbsp;留言反馈</a>
+                        </li>
+
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        {% if "name" not in session %}
+                        <li>
+                            <a data-toggle="modal" data-target="#loginModal" href=""
+                               style="font-weight: bold;">&nbsp;登录</a>
+                        </li>
+                        <li>
+                            <a data-toggle="modal" data-target="#registerModal" href=""
+                               style="font-weight: bold;">&nbsp;注册</a>
+                        </li>
+                        {% endif %}
+                        {% if "name" in session %}
+                        <li>
+                            <a class="curlink dropdown-toggle" data-toggle="dropdown" href="javascript:;"
+                               style="font-weight: bold;;"></span>&nbsp;{{session["name"]}}<span
+                                    class="caret"></span></a>
+                            <ul class="dropdown-menu" style="">
+                                <li><a class="" href="/v1/user_center/" style="font-weight: bold"><span
+                                        class=""></span>&nbsp;会员中心</a></li>
+                                <li><a class="" href="/v1/logout/" style="font-weight: bold"></span><span
+                                        class=""></span>&nbsp;退出登录</a></li>
+                            </ul>
+                        </li>
+                        {% else %}
+                        <!--                        <li>-->
+                        <!--                            <a class="curlink" href="" style="font-weight: bold"><span-->
+                        <!--                                    class="glyphicon glyphicon-user"></span>&nbsp;会员中心</a>-->
+                        <!--                        </li>-->
+                        {% endif %}
+                    </ul>
+                </div>
+                <!--导航-->
+            </div>
+        </nav>
+    </div>
+</div>
+<!-- 用于注册的模态框 -->
+<div class="modal fade bs-example-modal-lg" id="registerModal" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="panel panel-primary">
+            <div class="panel-heading" style="background-color: #0e91e8">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"
+                                                                                                  class="glyphicon glyphicon-remove-sign"
+                                                                                                  style="color: white"></span>
+                </button>
+                <h3 class="panel-title"><span class="glyphicon glyphicon-plus"></span>&nbsp;注册</h3>
+            </div>
+            <div class="panel-body">
+                <form>
+                    <fieldset>
+                        <div class="form-group">
+                            <label for="name"><span
+                                    class="glyphicon glyphicon-user"></span>&nbsp;账号</label>
+                            <input type="text" class="form-control" id="name" name="name" placeholder="请输入用户名"
+                                   maxlength="12" autofocus="autofocus">
+                            <div style="color: #dd1144;font-weight: bold" id="name_error"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="mobile_number"><span
+                                    class="glyphicon glyphicon-user"></span>&nbsp;手机号</label>
+                            <input type="text" class="form-control" id="mobile_number" name="mobile_number"
+                                   placeholder="请输入手机号"
+                                   minlength="11" maxlength="11" autofocus="autofocus">
+                            <div style="color: #dd1144;font-weight: bold;" id="mobile_number_error"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="pwd"><span
+                                    class="glyphicon glyphicon-lock"></span>密码</label>
+                            <input type="password" id="pwd" name="pwd" class="form-control" placeholder="请输入密码"
+                                   maxlength="20" minlength="6">
+                            <div style="color: #dd1144;font-weight: bold" id="pwd_error"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="sure_pwd"><span
+                                    class="glyphicon glyphicon-lock"></span>确认密码</label>
+                            <input type="password" id="sure_pwd" name="sure_pwd" class="form-control"
+                                   placeholder="再次输入密码"
+                                   maxlength="20" minlength="6">
+                            <div style="color: #dd1144;font-weight: bold" id="sure_pwd_error"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="verify_code"><span
+                                    class="glyphicon glyphicon-lock"></span>&nbsp;手机验证码</label>
+                            <div class="input-group">
+                                <input type="text" id="verify_code" name="verify_code"
+                                       class="form-control" placeholder="输入6位手机验证码"
+                                       maxlength="6" minlength="6">
+                                <span class="input-group-addon">
+										<input type="button" value="获取手机验证码"
+                                               onclick="send_verification_code(this)" style="border:none">
+                                    </span>
+                            </div>
+                            <div style="color: #dd1144;font-weight: bold" id="code_error"></div>
+                            <div class="col-md-12" style="padding: 0;margin-top: 8px">
+                                <div class="form-group">
+                                    <div style="color: green;font-weight: bold" id="reg_success"></div>
+                                    <div style="color: red;font-weight: bold" id="reg_error"></div>
+                                    已有账号，请直接<a href="javascript:">登录</a>!&nbsp;注册前请您详细阅读本站《<a
+                                        href="javascript:">用户协议</a>》,如注册,则默认您同意本协议!
+                                </div>
+                                <input type="button" class="btn btn-log btn-primary btn-block" value="注册"
+                                       style="background-color: #0e91e8" id="register" onclick="user_register()">
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!--用于注册的模态框/-->
+<!--用于登录的模态框-->
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="panel panel-primary">
+            <div class="panel-heading" style="background-color: #0e91e8">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"
+                                                                                                  class="glyphicon glyphicon-remove-sign"
+                                                                                                  style="color: white"></span>
+                </button>
+                <h3 class="panel-title"><span class="glyphicon glyphicon-user"></span>&nbsp;登录</h3>
+            </div>
+            <div class="panel-body">
+                <form>
+                    <fieldset>
+                        <div class="form-group">
+                            <label for="login_name"><span
+                                    class="glyphicon glyphicon-user"></span>&nbsp;账号</label>
+                            <input type="text" class="form-control" id="login_name" placeholder="请输入账号或手机号"
+                                   maxlength="12" autofocus="autofocus">
+                            <div style="color: #dd1144;font-weight: bold" id="login_name_error"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="login_pwd"><span
+                                    class="glyphicon glyphicon-lock"></span>密码</label>
+                            <input type="password" class="form-control" id="login_pwd" placeholder="请输入密码"
+                                   maxlength="20">
+                            <div style="color: #dd1144;font-weight: bold" id="login_pwd_error"></div>
+                        </div>
+                        <div>
+                            <span style="color: green;font-weight: bold" id="login_error"></span>
+                            <img id="login-img" width="15px"
+                                 src="{{url_for('static',filename='home/images/loading.gif')}}"
+                                 alt="" hidden>
+                        </div>
+                        <div class="col-md-12" style="padding: 0;margin-top: 8px">
+                            <div class="form-group">
+                                没有账号，请先<a href="javascript:">注册</a>！忘记用户名或密码，<a href="javascript:">找回用户名</a>，<a
+                                    href="javascript:">找回密码</a>！
+                            </div>
+                            <input type="button" class="btn btn-log btn-primary btn-block" value="登录"
+                                   onclick="user_login()"
+                                   style="background-color: #0e91e8">
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!--用于登录的模态框/-->
+<!--导航-->
+{% block content %}
+{% endblock %}
+<div class="container-fluid" style="background-color: rgb(95, 99, 188);color: white;margin-top: 8px">
+    <div class="row">
+        <div class="col-md-12  text-center" style="padding: 70px">
+            <h4><span style="color: red;font-weight: bold">免费</span>提供计算机毕设相关源代码，<span
+                    style="color: red;font-weight: bold">免费</span>指导毕业生做毕设，如 <span
+                    style="color: red;font-weight: bold">需要</span> 可提供 "专人一对一辅助完成毕设" 等个性化服务！</h4>
+            <h4 style="margin-top: 30px;">联系电话：185-1215-2005</h4>
+        </div>
+    </div>
+</div>
+<!--底部-->
+<div class="container-fluid"
+     style="background:#030d28;color: #c1c1c1;font-weight: bold;margin-bottom: 2px">
+    <div class="row">
+        <div class="col-md-12  text-center" style="padding: 40px">
+            <a href="{{url_for('home.about_website')}}" style="color:#c1c1c1;font-weight: bold">关于本站</a>&nbsp;|&nbsp;<a
+                href="{{url_for('home.disclaimer')}}" style="color:#c1c1c1;font-weight: bold">免责申明</a>&nbsp;|&nbsp;<a
+                href="{{url_for('home.blueprint')}}" style="color:#c1c1c1;font-weight: bold">本站蓝图</a>&nbsp;|&nbsp;<a
+                href="{{url_for('home.contact_us')}}" style="color:#c1c1c1;font-weight: bold">联系我们</a>
+            <br>
+            Copyright © 2019-2020&nbsp; 39bysj. All Rights Reserved.&nbsp;39毕设网 版权所有&nbsp;
+            <br>
+            <a target="_blank_" href="http://www.miit.gov.cn/" style="color:#c1c1c1;">豫ICP备19037971号</a>
+            <a target="_blank">
+                <img src="{{url_for('static',filename='home/images/beian.png')}}" style="padding-bottom:6px"/>
+                <span style="color:#c1c1c1;">豫公网安备 41152802000091号</span>
+            </a>
+            <!--<span>版本号:1.1.0.190402_alpha</span>-->
+            <span>
+                <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");
+                document.write(unescape("%3Cspan id='cnzz_stat_icon_1278138602'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1278138602%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+            </span>
+        </div>
+    </div>
+</div>
+<div style="width: 70px;height: auto;z-index: 99;bottom: 30%;position: fixed;right: 1px" id="plug-ins">
+    <div style="position: relative;float: right">
+        <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2237653116&site=qq&menu=yes" id="qq"
+           style="display: block;width: 40px;height: 40px;background-color:#0e91e8;margin-top: 1px">
+            <img width="20" height="20" src="{{url_for('static',filename='home/images/QQ.png')}}"
+                 style="margin-top: 10px;margin-left: 10px" alt="点击这里给我发消息" title="点击这里给我发消息">
+        </a>
+        <a href="javascript:" id="wechat"
+           style="display: block;width: 40px;height: 40px;background-color:#01b901;margin-top:1px">
+            <img width="22" height="20" src="{{url_for('static',filename='home/images/Wechat.png')}}" alt=""
+                 style="margin-top: 10px;margin-left: 9px">
+        </a>
+        <a href="javascript:" id="weibo"
+           style="display: block;width: 40px;height: 40px;background-color: #ff6b3f;;margin-top: 1px">
+            <img width="22" height="20" src="{{url_for('static',filename='home/images/weibo.png')}}" alt=""
+                 style="margin-top: 10px;margin-left: 9px">
+        </a>
+        <a href="javascript:" id="go_top"
+           style="display: none;width: 40px;height: 40px;background-color: #b5b5b5;margin-top: 1px">
+            <img width="22" height="20" src="{{url_for('static',filename='home/images/top.png')}}" alt=""
+                 style="margin-top: 10px;margin-left: 9px">
+        </a>
+    </div>
+</div>
+<!--底部-->
+</body>
+<script src="{{url_for('static',filename='public/js/jquery.js')}}"></script>
+<script src="{{url_for('static',filename='public/bootstrap/js/bootstrap.min.js')}}"></script>
+<script src="{{url_for('static',filename='public/js/wow.min.js')}}"></script>
+<script src="https://cdn.bootcss.com/holder/2.9.6/holder.min.js"></script>
+<script src="{{url_for('static',filename='home/js/go_top.js')}}"></script>
+<script src="{{url_for('static',filename='home/js/register.js')}}"></script>
+<script src="{{url_for('static',filename='home/js/login.js')}}"></script>
+
+<script>
+    $(document).ready(function () {
+        // 初始化animate动画组件
+        new WOW().init();
+        // 设置背景颜色
+        $('body').css('background-color', '#f3f4f7');
+    });
+</script>
+{% block js %}
+{% endblock %}
+</html>
