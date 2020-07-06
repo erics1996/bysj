@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="description" content="计算机毕设网是一个集“计算机专业大学生毕业设计的指导、网站的建设、计算机技术的学习和互联网资讯的发布等”于一体的综合网站平台。">
     <meta name="keywords" content="计算机毕设网，毕业设计，源代码，论文，计算机语言，IT教程，IT咨询">
-    <title>39毕设网</title>
+    <title>计算机毕设网</title>
     <link rel="icon" href="" type="image/x-icon">
     <link rel="shortcut icon" href="" type="image/x-icon">
     <link rel="stylesheet" href="{{url_for('static',filename='public/bootstrap/css/bootstrap.min.css')}}">
@@ -22,7 +22,7 @@
     <div class="row">
         <nav class="navbar navbar-default navbar-fixed-top"
              style="background:#fff;box-shadow: 0 2px 8px 0 rgba(50, 50, 50, 0.50);">
-            <div class="container" style="padding:0;">
+            <div class="container" style="padding-left: 10px;padding-right: 10px">
                 <!--小屏幕导航按钮和logo-->
                 <div class="navbar-header" style="padding-top: 6px">
                     <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"
@@ -34,7 +34,7 @@
                     <a href="" class="navbar-brand"
                        style="width:170px;color: #333;height: 60px;padding-top: 18px;">
                         <span class="glyphicon glyphicon-flag" style="color:#3379b7 "></span>
-                        39毕设网
+                        计算机毕设网
                     </a>
                 </div>
                 <!--小屏幕导航按钮和logo-->
@@ -64,32 +64,24 @@
                                style="font-weight: bold;"><span
                                     class=""></span>&nbsp;源码商城</a>
                         </li>
-                        <li>
-                            <a class="curlink" href="javascript:"
-                               style="font-weight: bold;"><span
-                                    class=""></span>&nbsp;建站</a>
-                        </li>
-                        <li>
-                            <a class="curlink" href="javascript:"
-                               style="font-weight: bold;"><span
-                                    class=""></span>&nbsp;购买模板</a>
-                        </li>
-                        <li>
-                            <a class="curlink" href="{{url_for('home.feedback')}}"
-                               style="font-weight: bold;"><span
-                                    class=""></span>&nbsp;留言反馈</a>
-                        </li>
+
+
+<!--                        <li>-->
+<!--                            <a class="curlink" href="{{url_for('home.feedback')}}"-->
+<!--                               style="font-weight: bold;"><span-->
+<!--                                    class=""></span>&nbsp;留言反馈</a>-->
+<!--                        </li>-->
 
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         {% if "name" not in session %}
                         <li>
                             <a data-toggle="modal" data-target="#loginModal" href=""
-                               style="font-weight: bold;">&nbsp;登录</a>
+                               style="font-weight: bold;">&nbsp;<span class="glyphicon glyphicon-user"></span> 登录</a>
                         </li>
                         <li>
                             <a data-toggle="modal" data-target="#registerModal" href=""
-                               style="font-weight: bold;">&nbsp;注册</a>
+                               style="font-weight: bold;">&nbsp;<span class="glyphicon glyphicon-plus"></span> 注册</a>
                         </li>
                         {% endif %}
                         {% if "name" in session %}
@@ -113,7 +105,7 @@
                     </ul>
                 </div>
                 <!--导航-->
-            </div>
+
         </nav>
     </div>
 </div>
